@@ -36,6 +36,4 @@ COPY . .
 #se ejecuta el archivo
 #ENTRYPOINT ["/usr/src/django_proj/entrypoint.sh"]
 
-EXPOSE 1337
-
-RUN python manage.py runserver 0.0.0.0:1337
+CMD python manage.py runserver 0.0.0.0:8080
