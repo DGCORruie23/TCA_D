@@ -28,6 +28,8 @@ COPY ./req.txt ./
 #instalar dependencias 
 RUN pip install -r req.txt
 
+RUN pip install django-storages[google]
+
 #se crea el directorio para los archivos Staticos de django
 RUN mkdir /usr/src/TCA/static
 
