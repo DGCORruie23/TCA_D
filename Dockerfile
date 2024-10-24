@@ -39,6 +39,6 @@ COPY . .
 RUN echo $GOOGLE_APPLICATION_CREDENTIALS
 #se ejecuta el archivo
 #ENTRYPOINT ["/usr/src/django_proj/entrypoint.sh"]
-RUN python manage.py collectstatic --noinput
+# RUN python manage.py collectstatic --noinput
 
 CMD python manage.py runserver 0.0.0.0:8080
