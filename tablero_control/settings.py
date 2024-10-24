@@ -27,6 +27,8 @@ DEBUG = int(os.environ.get("DEBUG", default=1))
 DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", default='localhost 172.22.13.148').split(" ")
 
+CSRF_TRUSTED_ORIGINS = os.environ.get("DJANGO_ALLOWED_HOSTS", default='localhost 172.22.13.148').split(" ")
+
 LOGIN_REDIRECT_URL = '/dashboard/'
 LOGIN_URL = 'log-in'
 LOGOUT_REDIRECT_URL = 'index'
