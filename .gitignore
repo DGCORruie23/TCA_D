@@ -1,0 +1,8 @@
+entorno
+.entorno
+.DS_Store
+*.pyc
+migrations
+media/mensajes/
+.env
+env
