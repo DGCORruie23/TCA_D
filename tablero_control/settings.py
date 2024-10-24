@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'tailwind',
     'estadistica',
 
+    'storages',
 ]
 
 MIDDLEWARE = [
