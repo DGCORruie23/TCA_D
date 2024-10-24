@@ -28,7 +28,6 @@ DEBUG = int(os.environ.get("DEBUG", default=1))
 DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
 GS_BUCKET_NAME = 'django_tca_bucket'
 STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
-MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/'
 
 # DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", default='localhost 172.22.13.148').split(" ")
@@ -55,7 +54,6 @@ INSTALLED_APPS = [
     'tailwind',
     'estadistica',
 
-    'storages',
 ]
 
 MIDDLEWARE = [
@@ -163,9 +161,9 @@ FILE_UPLOAD_MAX_MEMORY_SIZE = 104857600  # Sets the limit to 100MB, for example
 
 # STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-# # Archivos de medios
-# MEDIA_URL = '/media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# Archivos de medios
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # Default primary key field type
