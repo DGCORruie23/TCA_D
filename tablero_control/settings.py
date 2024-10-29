@@ -25,14 +25,22 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='django-insecure-v1!($nd@2=4ye
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = int(os.environ.get("DEBUG", default=1))
 
-DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+GS_PROJECT_ID = 'tca-dgcor-2024'
 GS_BUCKET_NAME = 'django_tca_bucket'
-STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+# GS_CREDENTIALS = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS', default='')
+STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+
+from google.oauth2 import service_account
+
+GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
+    "./credentials.json"
+)
+
 
 # DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", default='localhost 172.22.13.148').split(" ")
 
-CSRF_TRUSTED_ORIGINS = os.environ.get("DJANGO_TRUSTED_ORIGINS", default='localhost 172.22.13.148').split(" ")
+CSRF_TRUSTED_ORIGINS = os.environ.get("DJANGO_TRUSTED_ORIGINS", default='http://localhost http://172.22.13.148').split(" ")
 
 LOGIN_REDIRECT_URL = '/dashboard/'
 LOGIN_URL = 'log-in'
@@ -100,7 +108,7 @@ WSGI_APPLICATION = 'tablero_control.wsgi.application'
 DATABASES = {
     'default': {
         "ENGINE": os.environ.get("SQL_ENGINE", 'django.db.backends.sqlite3'),
-        "NAME": os.environ.get("MYSQL_DATABASE", os.path.join(BASE_DIR, "db.sqlite3")),
+        "NAME": os.environ.get("MYSQL_DATABASE", os.path.join(os.path.join(BASE_DIR, "data"), "db.sqlite3")),
         "USER": 'root',
         "PASSWORD": 'rui23dgcor@',
         "HOST": 'db',
@@ -146,8 +154,8 @@ USE_TZ = True
 # Archivos estáticos
 BASE_DIR_ROOT = os.environ.get('BASE_DIR_ROOT', default=BASE_DIR)
 
-STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR_ROOT, "static")
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR_ROOT, os.path.join("data", "static"))
 # STATICFILES_DIRS = [os.path.join(BASE_DIR_ROOT, 'static')]
 
 # Archivos de medios
@@ -163,7 +171,9 @@ FILE_UPLOAD_MAX_MEMORY_SIZE = 104857600  # Sets the limit to 100MB, for example
 
 # Archivos de medios
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR_ROOT, os.path.join("data", "media"))
+# MEDIA_URL = 'https://storage.googleapis.com/{}/media'.format(GS_BUCKET_NAME)
+# MEDIA_ROOT = "media/"
 
 
 # Default primary key field type

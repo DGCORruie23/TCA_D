@@ -1,11 +1,8 @@
 #imagen a instalar
 FROM python:3.9
 
-#creamos el directorio de trabajo
-RUN mkdir -p /usr/src/TCA
-
 #usamos el directorio de trabajo
-WORKDIR /usr/src/TCA
+WORKDIR /src/TCA
 
 #ESTABLECER VARIABLES DEL ENTORNO 
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -23,18 +20,22 @@ ENV LC_ALL en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
 
+#Copiar el proyecto entero
+COPY . /src/TCA
+
 #Copiar los requisitos del sistema
-COPY ./req.txt ./
+# COPY ./req.txt ./
 #instalar dependencias 
 RUN pip install -r req.txt
 
-RUN pip install google-cloud-storage django-storages[google]
+# RUN pip install google-cloud-storage
 
 #se crea el directorio para los archivos Staticos de django
-RUN mkdir /usr/src/TCA/static
+# RUN mkdir /static
 
-#Copiar el proyecto entero
-COPY . .
+VOLUME /usr/TCA/data
+
+EXPOSE 8080
 
 # RUN echo $GOOGLE_APPLICATION_CREDENTIALS
 #se ejecuta el archivo
@@ -42,3 +43,4 @@ COPY . .
 # RUN python manage.py collectstatic --noinput
 
 CMD python manage.py runserver 0.0.0.0:8080
+# CMD gunicorn --bind 0.0.0.0:8080 tablero_control.wsgi

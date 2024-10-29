@@ -3,6 +3,8 @@ entorno
 .DS_Store
 *.pyc
 migrations
-media/mensajes/
+data/media/mensajes/
 .env
 env
+credentials.json
+data/db.sqlite3
