@@ -25,19 +25,19 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='django-insecure-v1!($nd@2=4ye
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = int(os.environ.get("DEBUG", default=1))
 
-GS_PROJECT_ID = 'tca-dgcor-2024'
-GS_BUCKET_NAME = 'django_tca_bucket'
-# GS_CREDENTIALS = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS', default='')
-STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+# GS_PROJECT_ID = 'tca-dgcor-2024'
+# GS_BUCKET_NAME = 'django_tca_bucket'
+# # GS_CREDENTIALS = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS', default='')
+# STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
 
-from google.oauth2 import service_account
+# from google.oauth2 import service_account
 
-GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
-    "./credentials.json"
-)
+# GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
+#     "./credentials.json"
+# )
 
 
-# DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", default='localhost 172.22.13.148').split(" ")
 
 CSRF_TRUSTED_ORIGINS = os.environ.get("DJANGO_TRUSTED_ORIGINS", default='http://localhost http://172.22.13.148').split(" ")
