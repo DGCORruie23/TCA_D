@@ -110,7 +110,7 @@ DATABASES = {
         "NAME": os.environ.get("SQL_DATABASE", os.path.join(os.path.join(BASE_DIR, "data"), "db.sqlite3")),
         "USER": os.environ.get("DB_USER", default='root').split(" ") ,
         "PASSWORD": os.environ.get("DB_PASS", default='rui23dgco').split(" "),
-        "HOST": os.environ.get("DB_HOST", default='db').split(" "),
+        "HOST": os.environ.get("DB_HOST", default='db').split(" ")[0],
         "PORT": '5432',
     }
 }
