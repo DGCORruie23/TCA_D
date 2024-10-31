@@ -42,5 +42,5 @@ EXPOSE 8080
 #ENTRYPOINT ["/usr/src/django_proj/entrypoint.sh"]
 # RUN python manage.py collectstatic --noinput
 
-CMD python manage.py runserver 0.0.0.0:8080
+CMD python manage.py runserver 0.0.0.0:8090
 # CMD gunicorn --bind 0.0.0.0:8080 tablero_control.wsgi
