@@ -35,7 +35,7 @@ RUN pip install -r req.txt
 
 VOLUME /usr/TCA/data
 
-EXPOSE 8080
+EXPOSE 8090
 
 # RUN echo $GOOGLE_APPLICATION_CREDENTIALS
 #se ejecuta el archivo
