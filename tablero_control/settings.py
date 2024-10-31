@@ -104,7 +104,6 @@ WSGI_APPLICATION = 'tablero_control.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-
 DATABASES = {
     'default': {
         "ENGINE": os.environ.get("SQL_ENGINE", 'django.db.backends.sqlite3'),
@@ -112,9 +111,20 @@ DATABASES = {
         "USER": os.environ.get("DB_USER", default='root').split(" ") ,
         "PASSWORD": os.environ.get("DB_PASS", default='rui23dgco').split(" "),
         "HOST": os.environ.get("DB_HOST", default='db').split(" "),
-        "PORT": os.environ.get("DB_PORT", default='3306').split(" "),
+        "PORT": '5432',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         "ENGINE": os.environ.get("SQL_ENGINE", 'django.db.backends.sqlite3'),
+#         "NAME": os.environ.get("SQL_DATABASE", os.path.join(os.path.join(BASE_DIR, "data"), "db.sqlite3")),
+#         "USER": os.environ.get("DB_USER", default='root').split(" ") ,
+#         "PASSWORD": os.environ.get("DB_PASS", default='rui23dgco').split(" "),
+#         "HOST": os.environ.get("DB_HOST", default='db').split(" "),
+#         "PORT": os.environ.get("DB_PORT", default='3306').split(" "),
+#     }
+# }
 
 
 # Password validation

@@ -8,3 +8,4 @@ data/media/mensajes/
 env
 credentials.json
 data/db.sqlite3
+venv
