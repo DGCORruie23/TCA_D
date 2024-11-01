@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+import io
+
+import environ
+import google.auth
+from google.cloud import secretmanager
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,6 +29,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='django-insecure-v1!($nd@2=4ye
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = int(os.environ.get("DEBUG", default=1))
+
+env = environ.Env(DEBUG=(bool, True))
 
 # GS_PROJECT_ID = 'tca-dgcor-2024'
 # GS_BUCKET_NAME = 'django_tca_bucket'
@@ -45,6 +52,16 @@ CSRF_TRUSTED_ORIGINS = os.environ.get("DJANGO_TRUSTED_ORIGINS", default='http://
 LOGIN_REDIRECT_URL = '/dashboard/'
 LOGIN_URL = 'log-in'
 LOGOUT_REDIRECT_URL = 'index'
+
+
+project_id = os.environ.get("GOOGLE_CLOUD_PROJECT")
+
+client = secretmanager.SecretManagerServiceClient()
+settings_name = os.environ.get("SETTINGS_NAME", "django_settings")
+name = f"projects/{project_id}/secrets/{settings_name}/versions/latest"
+payload = client.access_secret_version(name=name).payload.data.decode("UTF-8")
+
+env.read_env(io.StringIO(payload))
 
 
 # Application definition
@@ -105,17 +122,20 @@ WSGI_APPLICATION = 'tablero_control.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        "ENGINE": 'django.db.backends.postgresql',
-        "NAME": 'dbTCA',
-        "USER": 'tca-google2',
-        "PASSWORD": os.environ.get("DB_PASS", default='DbTca2024@Dgcor17'),
-        "HOST": 'localhost',
-        "PORT": '5432',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         "ENGINE": 'django.db.backends.postgresql',
+#         "NAME": 'dbTCA',
+#         "USER": 'tca-google2',
+#         "PASSWORD": os.environ.get("DB_PASS", default='DbTca2024@Dgcor17'),
+#         "HOST": 'localhost',
+#         "PORT": '5432',
+#     }
+# }
 
+DATABASES = {"default": env.db()}
+DATABASES["default"]["HOST"] = "127.0.0.1"
+DATABASES["default"]["PORT"] = 5432
 
 # DATABASES = {
 #     'default': {
