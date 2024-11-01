@@ -10,3 +10,4 @@ credentials.json
 data/db.sqlite3
 venv
 cloud-sql-proxy
+backup_DB/

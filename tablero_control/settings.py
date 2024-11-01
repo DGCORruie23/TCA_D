@@ -105,17 +105,28 @@ WSGI_APPLICATION = 'tablero_control.wsgi.application'
 #     }
 # }
 
-
 DATABASES = {
     'default': {
-        "ENGINE": os.environ.get("SQL_ENGINE", 'django.db.backends.sqlite3'),
-        "NAME": os.environ.get("SQL_DATABASE", os.path.join(os.path.join(BASE_DIR, "data"), "db.sqlite3")),
-        "USER": os.environ.get("DB_USER", default='root'),
-        "PASSWORD": os.environ.get("DB_PASS", default='rui23dgco'),
+        "ENGINE": 'django.db.backends.postgresql',
+        "NAME": 'dbTCA',
+        "USER": 'tca-google2',
+        "PASSWORD": os.environ.get("DB_PASS", default='DbTca2024@Dgcor17'),
         "HOST": 'localhost',
         "PORT": '5432',
     }
 }
+
+
+# DATABASES = {
+#     'default': {
+#         "ENGINE": os.environ.get("SQL_ENGINE", 'django.db.backends.sqlite3'),
+#         "NAME": os.environ.get("SQL_DATABASE", os.path.join(os.path.join(BASE_DIR, "data"), "db.sqlite3")),
+#         "USER": os.environ.get("DB_USER", default='root'),
+#         "PASSWORD": os.environ.get("DB_PASS", default='0000'),
+#         "HOST": '/cloudsql/tca-dgcor:us-central1:tca-db',
+#         "PORT": '5432',
+#     }
+# }
 
 # DATABASES = {
 #     'default': {
@@ -174,10 +185,10 @@ STATIC_ROOT = os.path.join(BASE_DIR_ROOT, os.path.join("data", "static"))
 # MEDIA_URL = '/media/'
 # MEDIA_ROOT = os.path.join(BASE_DIR_ROOT,'media')
 
-SESSION_COOKIE_AGE = 360
+# SESSION_COOKIE_AGE = 360
 
-DATA_UPLOAD_MAX_MEMORY_SIZE = None  # Removes the size limit
-FILE_UPLOAD_MAX_MEMORY_SIZE = 104857600  # Sets the limit to 100MB, for example
+# DATA_UPLOAD_MAX_MEMORY_SIZE = None  # Removes the size limit
+# FILE_UPLOAD_MAX_MEMORY_SIZE = 104857600  # Sets the limit to 100MB, for example
 
 # STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
