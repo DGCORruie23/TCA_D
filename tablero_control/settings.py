@@ -108,10 +108,10 @@ WSGI_APPLICATION = 'tablero_control.wsgi.application'
 
 DATABASES = {
     'default': {
-        "ENGINE": os.environ.get("SQL_ENGINE", 'django.db.backends.sqlite3')[0],
-        "NAME": os.environ.get("SQL_DATABASE", os.path.join(os.path.join(BASE_DIR, "data"), "db.sqlite3"))[0],
-        "USER": os.environ.get("DB_USER", default='root').split(" ")[0] ,
-        "PASSWORD": os.environ.get("DB_PASS", default='rui23dgco').split(" ")[0],
+        "ENGINE": os.environ.get("SQL_ENGINE", 'django.db.backends.sqlite3'),
+        "NAME": os.environ.get("SQL_DATABASE", os.path.join(os.path.join(BASE_DIR, "data"), "db.sqlite3")),
+        "USER": os.environ.get("DB_USER", default='root'),
+        "PASSWORD": os.environ.get("DB_PASS", default='rui23dgco'),
         "HOST": 'localhost',
         "PORT": '5432',
     }
